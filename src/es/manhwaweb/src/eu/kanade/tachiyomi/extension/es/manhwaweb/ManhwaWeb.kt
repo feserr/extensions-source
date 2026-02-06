@@ -116,7 +116,7 @@ class ManhwaWeb : HttpSource() {
         return MangasPage(mangas, result.hasNextPage)
     }
 
-    override fun getMangaUrl(manga: SManga): String = "$baseUrl/${manga.url}"
+    override fun getMangaUrl(manga: SManga): String = "${manga.url}"
 
     override fun mangaDetailsRequest(manga: SManga): Request {
         val slug = manga.url.removeSuffix("/").substringAfterLast("/")
@@ -126,7 +126,7 @@ class ManhwaWeb : HttpSource() {
     override fun mangaDetailsParse(response: Response): SManga =
         json.decodeFromString<ComicDetailsDto>(response.body.string()).toSManga()
 
-    override fun getChapterUrl(chapter: SChapter): String = baseUrl + chapter.url
+    override fun getChapterUrl(chapter: SChapter): String = chapter.url
 
     override fun chapterListRequest(manga: SManga) = mangaDetailsRequest(manga)
 
